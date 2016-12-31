@@ -53,6 +53,10 @@
       <Project>{f5871ee5-b969-40eb-82d4-98ab87ec7928}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ODataRemoteServiceProvider\ODataRemoteServiceProvider.csproj">
+      <Project>{85499ff3-8d41-412d-99a1-aa244157bfce}</Project>
+      <Name>ODataRemoteServiceProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApiRemoteServiceProvider\WebApiRemoteServiceProvider.csproj">
       <Project>{12639881-0f06-40c8-b96d-39d58cebc0e0}</Project>
       <Name>WebApiRemoteServiceProvider</Name>
