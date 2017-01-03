@@ -1,0 +1,39 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+namespace <#= Model.ModulName #> {
+
+<# foreach(var ctrl in Model.Controllers) 
+{ #>
+	export class <#= ctrl.Name #>Service { 
+
+		private _url: string = '<#= Model.BaseUrl #>' + '/<#= ctrl.Url #>';
+
+		static $inject = ['$http'];
+		constructor(private $http: ng.IHttpService) { 
+		}
+
+<# foreach(var act in ctrl.Actions) 
+{ #>
+		<#= act.Name #>(): Promise<{ value?: <# if(act.ReponseModel != "") { #><# if(!act.IsPrimitive) { #><#= Model.ModulName #>.I<# } #><#= act.ReponseModel #><# if(act.IsArrayResponse) { #>[]<# } #><# } else { #>any<# } #> }> { 
+			let promise = new Promise((resolve, reject) => {
+				this.$http({
+					url: '<#= Model.BaseUrl #>' + '/<#= act.Url #>',
+					method: '<#= act.Method #>',
+<# var item = act.Parameters.FirstOrDefault(x => x.WithUrl != true);  
+if(item != null) { #>
+					data: <# if(!item.IsPrimitive) { #><#= Model.ModulName #>.I<# } #><#= item.Type #>,
+<# } #>
+				}).then(r => r.data).then(resolve, reject);
+			});
+
+			return promise;
+		}
+		 
+<# } #>
+	}
+
+<# } #>
+}

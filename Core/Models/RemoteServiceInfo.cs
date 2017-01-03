@@ -10,6 +10,8 @@ namespace Core.Models
     {
         public string BaseUrl { get; set; }
 
+        public string ModulName { get; set; } = "Core";
+
         public ICollection<ModelInfo> Models { get; set; }
 
         public ICollection<ControllerInfo> Controllers { get; set; }
@@ -31,6 +33,10 @@ namespace Core.Models
         public bool Nullable { get; set; } = true;
 
         public bool Array { get; set; } = false;
+
+        public bool WithUrl { get; set; } = false;
+
+        public bool IsPrimitive { get; set; } = true;
     }
 
     public class ControllerInfo
@@ -50,8 +56,10 @@ namespace Core.Models
 
         public bool IsArrayResponse { get; set; } = false;
 
-        public string ReponseModel { get; set; }
-        
+        public string ReponseModel { get; set; } = string.Empty;
+
+        public bool IsPrimitive { get; set; } = true;
+
         public string Method { get; set; }
 
         public ICollection<PropertyInfo> Parameters { get; set; }

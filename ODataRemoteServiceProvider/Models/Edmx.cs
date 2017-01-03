@@ -378,7 +378,7 @@ namespace ODataRemoteServiceProvider.Models.V3
 
         private SchemaEntityTypeProperty[] propertyField;
 
-        private SchemaEntityTypeNavigationProperty navigationPropertyField;
+        private SchemaEntityTypeNavigationProperty[] navigationPropertyField;
 
         private string nameField;
 
@@ -410,7 +410,8 @@ namespace ODataRemoteServiceProvider.Models.V3
         }
 
         /// <remarks/>
-        public SchemaEntityTypeNavigationProperty NavigationProperty
+        [System.Xml.Serialization.XmlElementAttribute("NavigationProperty")]
+        public SchemaEntityTypeNavigationProperty[] NavigationProperty
         {
             get
             {

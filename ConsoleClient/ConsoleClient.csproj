@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AngularJSTemplates\AngularJSTemplates.csproj">
+      <Project>{c48f4b26-42a7-4d44-9097-fd5c803dc17f}</Project>
+      <Name>AngularJSTemplates</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{f5871ee5-b969-40eb-82d4-98ab87ec7928}</Project>
       <Name>Core</Name>

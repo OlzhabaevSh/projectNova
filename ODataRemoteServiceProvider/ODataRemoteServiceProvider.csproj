@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Models\Edmx.cs" />
     <Compile Include="Models\ODataParser.cs" />
+    <Compile Include="OData3TypeConverter.cs" />
     <Compile Include="ODataRemoteServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

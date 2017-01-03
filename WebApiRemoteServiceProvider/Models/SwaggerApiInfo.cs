@@ -26,6 +26,8 @@ namespace WebApiRemoteServiceProvider.Models
     {
         public string Url { get; set; }
         public string Method { get; set; }
+        public bool WithUrlParams { get; set; } = false;
+        public bool IsPrimitive { get; set; } = true;
         public ICollection<string> Tags { get; set; }
         public ICollection<Parameter> Parameters { get; set; }
         public Response Response { get; set; }
@@ -33,6 +35,8 @@ namespace WebApiRemoteServiceProvider.Models
 
     public class Parameter
     {
+        public bool WithUrl { get; set; } = false;
+        public bool IsPrimitive { get; set; } = true;
         public string Name { get; set; }
         public string In { get; set; }
         public bool Required { get; set; }
@@ -45,6 +49,7 @@ namespace WebApiRemoteServiceProvider.Models
         public string Code { get; set; }
         public string Type { get; set; }
         public string Generic { get; set; }
+        public bool IsPrimitive { get; set; } = true;
     }
 
     public class Definition
@@ -56,6 +61,7 @@ namespace WebApiRemoteServiceProvider.Models
 
     public class Property
     {
+        public bool IsPrimitive { get; set; } = true;
         public string Title { get; set; }
         public string Type { get; set; }
         public string Generic { get; set; }

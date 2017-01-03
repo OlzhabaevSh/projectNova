@@ -21,20 +21,35 @@ namespace WebApiRemoteServiceProvider
         {
             var swaggetInfo = new SwaggerApiInfo();
 
+            RemoteServiceInfo res = new RemoteServiceInfo();
+
             using (var _client = new WebClient())
             {
-                var res = _client.DownloadString(serviceUrl);
+                var swaggerJsonStr = _client.DownloadString(serviceUrl);
 
-                var jsonParser = new SwaggerJsonParser();
-                // delete
+                try
+                {
+                    var jsonParser = new SwaggerJsonParser();
 
-                swaggetInfo = jsonParser.Parse(res);
+                    swaggetInfo = jsonParser.Parse(swaggerJsonStr);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Parse json failed", ex);
+                }
+
+                try
+                {
+                    var parser = new SwaggerInfoParser();
+                    res = parser.Parse(swaggetInfo);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Parse to GeneralInfo failed", ex);
+                }
+
+                return res;
             }
-
-            var parser = new SwaggerInfoParser();
-            var prsInfo = parser.Parse(swaggetInfo);
-
-            return prsInfo;
         }
 
         public RemoteServiceInfo ParseFile(string path)
@@ -44,16 +59,34 @@ namespace WebApiRemoteServiceProvider
                 throw new Exception("Не правильный путь к файлу. Path: '" + path + "'");
             }
 
+            RemoteServiceInfo res = new RemoteServiceInfo();
+
             var swaggerJsonStr = System.IO.File.ReadAllText(path);
 
-            var jsonParser = new SwaggerJsonParser();
+            SwaggerApiInfo swaggetInfo = new SwaggerApiInfo();
 
-            var swaggetInfo = jsonParser.Parse(swaggerJsonStr);
+            try
+            {
+                var jsonParser = new SwaggerJsonParser();
 
-            var parser = new SwaggerInfoParser();
-            var prsInfo = parser.Parse(swaggetInfo);
+                swaggetInfo = jsonParser.Parse(swaggerJsonStr);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Parse json failed", ex);
+            }
 
-            return prsInfo;
+            try
+            {
+                var parser = new SwaggerInfoParser();
+                res = parser.Parse(swaggetInfo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Parse to GeneralInfo failed", ex);
+            }
+            
+            return res;
         }
         
     }

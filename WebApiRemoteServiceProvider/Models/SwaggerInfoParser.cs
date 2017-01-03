@@ -16,6 +16,7 @@ namespace WebApiRemoteServiceProvider.Models
         {
             var res = new RemoteServiceInfo()
             {
+                ModulName = info.Info.Title,
                 BaseUrl = info.Host,
                 Controllers = new List<ControllerInfo>(),
                 Models = new List<ModelInfo>()
@@ -32,6 +33,8 @@ namespace WebApiRemoteServiceProvider.Models
                 foreach (var prp in dfn.Properties)
                 {
                     var prpInfo = new PropertyInfo();
+
+                    prpInfo.IsPrimitive = prp.IsPrimitive;
 
                     prpInfo.Title = _cvt.ConvertType(prp.Title);
 
@@ -54,7 +57,7 @@ namespace WebApiRemoteServiceProvider.Models
 
             foreach (var pth in info.Paths)
             {
-                var url = pth.Url;
+                var url = pth.Url; 
                 // '/api/controllerName'
                 if (pth.Url.Contains("/api/"))
                 {
@@ -101,11 +104,33 @@ namespace WebApiRemoteServiceProvider.Models
 
         private ActionInfo ParseActions(Path pth, string actionName)
         {
+            if (pth.Response.Type == null)
+            {
+                pth.Response.Type = string.Empty;
+            }
+
+            if (pth.Response.Generic == null)
+            {
+                pth.Response.Generic = string.Empty;
+            }
+            
+            StringBuilder name = new StringBuilder(pth.Method);
+
+            if (pth.Response.Type == "array")
+            {
+                name.Append("Collection");
+            }
+            else
+            {
+                name.Append("Item");
+            }
+
             var actInfo = new ActionInfo()
             {
                 Url = actionName,
-                Name = string.Format("{0}Data", pth.Method),
+                Name = name.ToString(),
                 Method = pth.Method,
+                IsPrimitive = pth.Response.IsPrimitive,
                 ReponseModel = pth.Response.Type != "array" ? pth.Response.Type : pth.Response.Generic,
                 IsArrayResponse = pth.Response.Type == "array",
                 Parameters = new List<PropertyInfo>()
@@ -117,7 +142,9 @@ namespace WebApiRemoteServiceProvider.Models
                 {
                     Nullable = prp.Required,
                     Title = prp.Name,
-                    Type = prp.Type
+                    Type = prp.Type,
+                    IsPrimitive = prp.IsPrimitive,
+                    WithUrl = prp.WithUrl
                 };
 
                 actInfo.Parameters.Add(propInfo);

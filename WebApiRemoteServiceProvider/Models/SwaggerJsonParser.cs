@@ -57,6 +57,7 @@ namespace WebApiRemoteServiceProvider.Models
                         var href = pr.Value.Value<JObject>().GetValue("$ref").Value<string>();
                         var lastSlashIndex = href.LastIndexOf('/');
                         nprs.Type = href.Substring(lastSlashIndex + 1);
+                        nprs.IsPrimitive = false;
                     }
                     else if (prObj != null && prFormat != null)
                     {
@@ -75,6 +76,7 @@ namespace WebApiRemoteServiceProvider.Models
                             var items = pr.Value.Value<JObject>().GetValue("items").Value<JObject>().GetValue("$ref").Value<string>();
                             var lastSlashIndex = items.LastIndexOf('/');
                             nprs.Generic = items.Substring(lastSlashIndex + 1);
+                            nprs.IsPrimitive = false;
                         }
                     }
                     
@@ -91,10 +93,13 @@ namespace WebApiRemoteServiceProvider.Models
             {
                 var urlStr = string.Empty;
 
+                var withUrlParams = false;
+
                 if (pt.Key.Contains("/{") == true)
                 {
                     var index = pt.Key.IndexOf("/{");
                     urlStr = pt.Key.Substring(0, index);
+                    withUrlParams = true;
                 }
                 else
                 {
@@ -108,6 +113,7 @@ namespace WebApiRemoteServiceProvider.Models
                     var path = new Path()
                     {
                         Url = urlStr,
+                        WithUrlParams = withUrlParams,
                         Method = mth.Key,
                         Parameters = new List<Parameter>()
                     };
@@ -131,6 +137,11 @@ namespace WebApiRemoteServiceProvider.Models
                                 Required = prm.Value<JObject>().GetValue("required").Value<bool>(),
                                 //Type = prm.Value<JObject>().GetValue("type").Value<string>(),
                             };
+                            
+                            if (prmetr.Name.ToLower() == "id")
+                            {
+                                prmetr.WithUrl = true;
+                            }
 
                             var type = prm.Value<JObject>().GetValue("type");
                             if (type != null)
@@ -142,6 +153,7 @@ namespace WebApiRemoteServiceProvider.Models
                                 var href = prm.Value<JObject>().GetValue("schema").Value<JObject>().GetValue("$ref").Value<string>();
                                 var lastIndex = href.LastIndexOf('/');
                                 prmetr.Type = href.Substring(lastIndex + 1);
+                                prmetr.IsPrimitive = false;
                             }
 
                             path.Parameters.Add(prmetr);
@@ -176,6 +188,7 @@ namespace WebApiRemoteServiceProvider.Models
                                         var href = schema.GetValue("items").Value<JObject>().GetValue("$ref").Value<string>();
                                         var index = href.LastIndexOf('/');
                                         rsp.Generic = href.Substring(index + 1);
+                                        rsp.IsPrimitive = false;
                                     }
                                 }
                                 else
@@ -183,6 +196,7 @@ namespace WebApiRemoteServiceProvider.Models
                                     var href = schema.GetValue("$ref").Value<string>();
                                     var index = href.LastIndexOf('/');
                                     rsp.Type = href.Substring(index + 1);
+                                    rsp.IsPrimitive = false;
                                 }
 
                             }
@@ -198,7 +212,6 @@ namespace WebApiRemoteServiceProvider.Models
 
             return swaggetInfo;
         }
-
 
         private string TypeOrFormat(string type, string format)
         {
