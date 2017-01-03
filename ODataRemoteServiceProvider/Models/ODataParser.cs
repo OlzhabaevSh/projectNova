@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using ODataRemoteServiceProvider.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace ODataRemoteServiceProvider.Models
 {
     class ODataParser
     {
-        public RemoteServiceInfo Parse(Edmx edmx)
+        public RemoteServiceInfo Parse(V3.Edmx edmx)
         {
             var res = new RemoteServiceInfo();
 

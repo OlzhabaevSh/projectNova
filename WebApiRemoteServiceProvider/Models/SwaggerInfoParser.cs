@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace WebApiRemoteServiceProvider.Models
 {
     class SwaggerInfoParser
     {
+        private ITypeConvertProvider _cvt = new SwaggerTypeConvertProvider();
+
         public RemoteServiceInfo Parse(SwaggerApiInfo info)
         {
             var res = new RemoteServiceInfo()
@@ -30,16 +33,16 @@ namespace WebApiRemoteServiceProvider.Models
                 {
                     var prpInfo = new PropertyInfo();
 
-                    prpInfo.Title = prp.Title;
+                    prpInfo.Title = _cvt.ConvertType(prp.Title);
 
                     if (prp.Type == "array")
                     {
                         prpInfo.Array = true;
-                        prpInfo.Type = prp.Generic;
+                        prpInfo.Type = _cvt.ConvertType(prp.Generic);
                     }
                     else
                     {
-                        prpInfo.Type = prp.Type;
+                        prpInfo.Type = _cvt.ConvertType(prp.Type);
                     }
                     mdl.Properties.Add(prpInfo);
                 }
@@ -71,7 +74,7 @@ namespace WebApiRemoteServiceProvider.Models
                     };
                     controllers.Add(ctrl);
                 }
-                
+
                 if (!url.Contains('/'))
                 {
                     var actionName = url;
@@ -122,6 +125,6 @@ namespace WebApiRemoteServiceProvider.Models
 
             return actInfo;
         }
-
+        
     }
 }

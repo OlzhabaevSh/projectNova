@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Models\SwaggerApiInfo.cs" />
     <Compile Include="Models\SwaggerInfoParser.cs" />
+    <Compile Include="Models\SwaggerJsonParser.cs" />
+    <Compile Include="SwaggerTypeConvertProvider.cs" />
     <Compile Include="WebApiRemoteServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

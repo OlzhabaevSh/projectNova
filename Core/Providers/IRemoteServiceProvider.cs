@@ -20,10 +20,10 @@ namespace Core.Providers
     public interface IRemoteServiceProvider
     {
         RemoteServiceProviderEnum RemoteServiceProvider { get; }
-
-        string ServiceUrl { get; set; }
-
-        RemoteServiceInfo GetWebServerMetaInfo();
         
+        RemoteServiceInfo GetWebServerMetaInfo(string serviceUrl);
+
+        RemoteServiceInfo ParseFile(string path);
+
     }
 }
