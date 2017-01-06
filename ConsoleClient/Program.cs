@@ -64,10 +64,11 @@ namespace ConsoleClient
         static void SourseAndComponentToAnugularMapper(RemoteServiceProviderEnum remoteService)
         {
             IRemoteServiceProvider provider;
+            ICodeGenerator generator = new AngularCodeGenerator();
 
             if (remoteService == RemoteServiceProviderEnum.OData)
             {
-                provider = new ODataRemoteServiceProvider();
+                provider = new ODataRemoteServiceProvider();;
             }
             else if (remoteService == RemoteServiceProviderEnum.WebApi)
             {
@@ -92,19 +93,17 @@ namespace ConsoleClient
             Console.Write("Write file name: [example: core]: ");
             var name = Console.ReadLine();
 
-            ICodeGenerator generator = new AngularCodeGenerator();
-
+            
             if (componentType == ComponentType.ViewModelDts)
             {
-                generator.GenerateFile(res, ComponentType.ViewModelDts, "", name);
+                generator.GenerateFile(res, ComponentType.ViewModelDts, remoteService, "", name);
             }
             else if (componentType == ComponentType.ProxyService)
             {
-                generator.GenerateFile(res, ComponentType.ViewModelDts, "", name);
-                generator.GenerateFile(res, ComponentType.ProxyService, "", name);
+                generator.GenerateFile(res, ComponentType.ViewModelDts, remoteService, "", name);
+                generator.GenerateFile(res, ComponentType.ProxyService, remoteService, "", name);
             }
 
         }
-
     }
 }

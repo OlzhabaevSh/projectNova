@@ -51,6 +51,11 @@
       <DependentUpon>AngularViewModels.tt</DependentUpon>
     </Compile>
     <Compile Include="AngularCodeGenerator.cs" />
+    <Compile Include="AngularWebApiHttpService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AngularWebApiHttpService.tt</DependentUpon>
+    </Compile>
     <Compile Include="CodeGeneratorPartial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ODataServiceVM.cs" />
@@ -69,6 +74,10 @@
     <Content Include="AngularViewModels.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AngularViewModels.cs</LastGenOutput>
+    </Content>
+    <Content Include="AngularWebApiHttpService.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>AngularWebApiHttpService.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

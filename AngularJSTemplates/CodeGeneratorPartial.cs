@@ -17,5 +17,9 @@ namespace AngularJSTemplates
         public RemoteServiceInfo Model { get; set; }
     }
 
+    public partial class AngularWebApiHttpService
+    {
+        public RemoteServiceInfo Model { get; set; }
+    }
 
 }

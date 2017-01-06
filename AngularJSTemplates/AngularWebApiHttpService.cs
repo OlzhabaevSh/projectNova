@@ -18,9 +18,9 @@ namespace AngularJSTemplates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+    #line 1 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
-    public partial class AngularODataHttpService : AngularODataHttpServiceBase
+    public partial class AngularWebApiHttpService : AngularWebApiHttpServiceBase
     {
 #line hidden
         /// <summary>
@@ -30,14 +30,14 @@ namespace AngularJSTemplates
         {
             this.Write("namespace ");
             
-            #line 6 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 6 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModulName));
             
             #line default
             #line hidden
             this.Write(" {\r\n\r\n");
             
-            #line 8 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 8 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  foreach(var ctrl in Model.Controllers) 
 { 
             
@@ -45,40 +45,40 @@ namespace AngularJSTemplates
             #line hidden
             this.Write("\texport class ");
             
-            #line 10 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 10 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ctrl.Name));
             
             #line default
             #line hidden
             this.Write("Service { \r\n\r\n\t\tprivate _url: string = \'");
             
-            #line 12 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 12 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.BaseUrl));
             
             #line default
             #line hidden
-            this.Write("\' + \'");
+            this.Write("\' + \'/");
             
-            #line 12 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 12 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ctrl.Url));
             
             #line default
             #line hidden
             this.Write("\';\r\n\r\n\t\tprivate _baseUrl: string = \'");
             
-            #line 14 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 14 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  if(Model.BaseUrl != "") { 
             
             #line default
             #line hidden
             
-            #line 14 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 14 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.BaseUrl));
             
             #line default
             #line hidden
             
-            #line 14 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 14 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
@@ -86,7 +86,7 @@ namespace AngularJSTemplates
             this.Write("\';\r\n\r\n\t\tstatic $inject = [\'$http\'];\r\n\t\tconstructor(private $http: ng.IHttpService" +
                     ") { \r\n\t\t}\r\n\r\n");
             
-            #line 20 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 20 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  foreach(var act in ctrl.Actions) 
 { 
             
@@ -94,178 +94,177 @@ namespace AngularJSTemplates
             #line hidden
             this.Write("\t\t");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(act.Name));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  if(act.Parameters.Any()) { var lastElem = act.Parameters.Last(); 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  foreach(var prp in act.Parameters) { 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prp.Title));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  if(!prp.IsPrimitive) { 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModulName));
             
             #line default
             #line hidden
             this.Write(".I");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prp.Type));
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } else { 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prp.Type));
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } if(!prp.Equals(lastElem)) { 
             
             #line default
             #line hidden
             this.Write(",");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } } 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
 } 
             
             #line default
             #line hidden
-            this.Write("): Promise<{ value?: ");
+            this.Write("): Promise<");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  if(act.ReponseModel != "") { 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  if(!act.IsPrimitive) { 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModulName));
             
             #line default
             #line hidden
             this.Write(".I");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(act.ReponseModel));
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  if(act.IsArrayResponse) { 
             
             #line default
             #line hidden
             this.Write("[]");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } else { 
             
             #line default
             #line hidden
             this.Write("any");
             
-            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 22 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
             #line hidden
-            this.Write(" }> { \r\n\t\t\tlet promise = new Promise((resolve, reject) => {\r\n\t\t\t\tthis.$http({\r\n\t\t" +
-                    "\t\t\turl: this._baseUrl + \'");
+            this.Write("> { \r\n\t\t\tlet promise = new Promise((resolve, reject) => {\r\n\t\t\t\tthis.$http({\r\n\t\t\t\t" +
+                    "\turl: this._baseUrl + \'/");
             
-            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(act.Url));
             
             #line default
             #line hidden
             this.Write("\' ");
             
-            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  var urlItem = act.Parameters.FirstOrDefault(x => x.WithUrl == true); if(urlItem != null) { 
             
             #line default
             #line hidden
-            this.Write(" + \'(\' + ");
+            this.Write(" + \'/\' + ");
             
-            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(urlItem.Title));
             
             #line default
             #line hidden
-            this.Write(" + \')\'");
             
-            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 25 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
             #line hidden
             this.Write(",\r\n\t\t\t\t\tmethod: \'");
             
-            #line 26 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 26 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(act.Method));
             
             #line default
             #line hidden
             this.Write("\',\r\n");
             
-            #line 27 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 27 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  var item = act.Parameters.FirstOrDefault(x => x.WithUrl != true);  
 if(item != null) { 
             
@@ -273,14 +272,14 @@ if(item != null) {
             #line hidden
             this.Write("\t\t\t\t\tdata: ");
             
-            #line 29 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 29 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(item.Title));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 30 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 30 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
@@ -288,14 +287,14 @@ if(item != null) {
             this.Write("\t\t\t\t}).then(r => r.data).then(resolve, reject);\r\n\t\t\t});\r\n\r\n\t\t\treturn promise;\r\n\t\t" +
                     "}\r\n\t\t \r\n");
             
-            #line 37 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 37 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\t}\r\n\r\n");
             
-            #line 40 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+            #line 40 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularWebApiHttpService.tt"
  } 
             
             #line default
@@ -312,7 +311,7 @@ if(item != null) {
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
-    public class AngularODataHttpServiceBase
+    public class AngularWebApiHttpServiceBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

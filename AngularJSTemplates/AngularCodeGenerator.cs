@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
 using System.IO;
+using Core.Providers;
 
 namespace AngularJSTemplates
 {
@@ -13,9 +14,9 @@ namespace AngularJSTemplates
     {
         public Framework Framework { get; private set; } = Framework.AngularJS;
 
-        public string GenerateFile(RemoteServiceInfo info, ComponentType componentType, string path, string fileName)
+        public string GenerateFile(RemoteServiceInfo info, ComponentType componentType, RemoteServiceProviderEnum remoteService, string path, string fileName)
         {
-            var res = MatchCodeGenerator(info, componentType);
+            var res = MatchCodeGenerator(info, componentType, remoteService);
 
             var fullPath = path != string.Empty ? path + "/" + fileName : fileName;
 
@@ -49,7 +50,7 @@ namespace AngularJSTemplates
             return fullPath;
         }
 
-        private string MatchCodeGenerator(RemoteServiceInfo info, ComponentType componentType)
+        private string MatchCodeGenerator(RemoteServiceInfo info, ComponentType componentType, RemoteServiceProviderEnum remoteService)
         {
             var str = string.Empty;
 
@@ -60,7 +61,7 @@ namespace AngularJSTemplates
             }
             else if (componentType == ComponentType.ProxyService)
             {
-                str = GenerateService(info);
+                str = GenerateService(info, remoteService);
             }
             else if (componentType == ComponentType.ProxyServiceWithLinq)
             {
@@ -84,14 +85,27 @@ namespace AngularJSTemplates
             return res;
         }
 
-        private string GenerateService(RemoteServiceInfo info)
+        private string GenerateService(RemoteServiceInfo info, RemoteServiceProviderEnum remoteService)
         {
-            var srv = new AngularODataHttpService();
-            srv.Model = info;
+            if (remoteService == RemoteServiceProviderEnum.OData)
+            {
+                var srv = new AngularODataHttpService();
+                srv.Model = info;
+                var res = srv.TransformText();
 
-            var res = srv.TransformText();
+                return res;
+            }
+            else if (remoteService == RemoteServiceProviderEnum.WebApi)
+            {
+                var srv = new AngularWebApiHttpService();
+                srv.Model = info;
+                var res = srv.TransformText();
 
-            return res;
+                return res;
+            }
+            else
+                throw new NotImplementedException("Не реализован выбранный источник: " + remoteService);
+
         }
 
 

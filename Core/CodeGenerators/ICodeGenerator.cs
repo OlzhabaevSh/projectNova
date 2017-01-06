@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,6 @@ namespace Core.CodeGenerators
     {
         Framework Framework { get; }
 
-        string GenerateFile(RemoteServiceInfo info, ComponentType componentType, string path, string fileName);
+        string GenerateFile(RemoteServiceInfo info, ComponentType componentType, RemoteServiceProviderEnum remoteService,string path, string fileName);
     }
 }
