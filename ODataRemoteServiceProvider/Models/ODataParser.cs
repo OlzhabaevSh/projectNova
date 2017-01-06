@@ -64,17 +64,22 @@ namespace ODataRemoteServiceProvider.Models
 
                 type.NavigationProperty.ToList().ForEach(nvgProp =>
                 {
+                    var relation = nvgProp.Relationship.Substring(nvgProp.Relationship.LastIndexOf('.') + 1);
+                    var mptcityItem = dataService.Association.FirstOrDefault(x => x.Name == relation).End.FirstOrDefault(x => x.Role == nvgProp.ToRole);
+
+                    var ttl = mptcityItem.Type.Substring(mptcityItem.Type.LastIndexOf('.') + 1);
+
                     var prpInro = new PropertyInfo()
                     {
-                        Title = nvgProp.Name,
-                        Type = nvgProp.Name,
+                        Title = ttl,
+                        Type = ttl,
                         IsPrimitive = false
                     };
 
-                    var relation = nvgProp.Relationship.Substring(nvgProp.Relationship.LastIndexOf('.') + 1);
+                    
 
                     // "*", "0..1"
-                    var mptcity = dataService.Association.FirstOrDefault(x => x.Name == relation).End.FirstOrDefault(x => x.Role == nvgProp.ToRole).Multiplicity;
+                    var mptcity = mptcityItem.Multiplicity;
 
                     if (mptcity == "*")
                     {
@@ -110,9 +115,11 @@ namespace ODataRemoteServiceProvider.Models
 
                 var methods = new List<string>() { "get", "get", "post", "put", "delete" };
 
-                methods.ForEach(mth => 
+                for (var i = 0; i < methods.Count; i++)
                 {
-                    var index = methods.IndexOf(mth);
+                    var index = i;
+
+                    var mth = methods[i];
 
                     var name = mth;
 
@@ -140,14 +147,15 @@ namespace ODataRemoteServiceProvider.Models
                     {
                         if (index == 1)
                         {
-                            var prop = dataService.EntityType.First(x => x.Name == mdl.Title).Key.PropertyRef.Name;
+                            var pr = dataService.EntityType.First(x => x.Name == mdl.Title);
+                            var prop = pr.Key.PropertyRef.Name;
                             act.Parameters.Add(new PropertyInfo()
                             {
                                 Array = false,
                                 IsPrimitive = true,
                                 Nullable = false,
                                 Title = prop,
-                                Type = res.Models.First(x => x.Title == prop).Title,
+                                Type = cnvrt.ConvertType(pr.Property.First(x => x.Name == prop).Type),
                                 WithUrl = true
                             });
                         }
@@ -166,14 +174,15 @@ namespace ODataRemoteServiceProvider.Models
                     }
                     else if (mth == "put")
                     {
-                        var prop = dataService.EntityType.First(x => x.Name == mdl.Title).Key.PropertyRef.Name;
+                        var pr = dataService.EntityType.First(x => x.Name == mdl.Title);
+                        var prop = pr.Key.PropertyRef.Name;
                         act.Parameters.Add(new PropertyInfo()
                         {
                             Array = false,
                             IsPrimitive = true,
                             Nullable = false,
                             Title = prop,
-                            Type = mdl.Properties.First(x => x.Title == prop).Type,
+                            Type = cnvrt.ConvertType(pr.Property.First(x => x.Name == prop).Type),
                             WithUrl = true
                         });
                         act.Parameters.Add(new PropertyInfo()
@@ -189,21 +198,22 @@ namespace ODataRemoteServiceProvider.Models
                     }
                     else if (mth == "delete")
                     {
-                        var prop = dataService.EntityType.First(x => x.Name == mdl.Title).Key.PropertyRef.Name;
+                        var pr = dataService.EntityType.First(x => x.Name == mdl.Title);
+                        var prop = pr.Key.PropertyRef.Name;
                         act.Parameters.Add(new PropertyInfo()
                         {
                             Array = false,
                             IsPrimitive = true,
                             Nullable = false,
                             Title = prop,
-                            Type = mdl.Properties.First(x => x.Title == prop).Type,
+                            Type = cnvrt.ConvertType(pr.Property.First(x => x.Name == prop).Type),
                             WithUrl = true
                         });
                     }
 
                     ctrl.Actions.Add(act);
-                });
-
+                }
+                
                 res.Controllers.Add(ctrl);
             });
 

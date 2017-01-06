@@ -83,7 +83,7 @@ namespace AngularJSTemplates
             this.Write("(");
             
             #line 20 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
- if(act.Parameters.Any()) { 
+ if(act.Parameters.Any()) { var lastElem = act.Parameters.Last(); 
             
             #line default
             #line hidden
@@ -128,6 +128,12 @@ namespace AngularJSTemplates
             
             #line 20 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prp.Type));
+            
+            #line default
+            #line hidden
+            
+            #line 20 "C:\Users\chingiz\documents\visual studio 2015\Projects\ProjectNova\AngularJSTemplates\AngularODataHttpService.tt"
+ } if(!prp.Equals(lastElem)) { 
             
             #line default
             #line hidden
